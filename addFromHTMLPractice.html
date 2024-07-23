@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input,label{
+            display:block;
+        }
+        .divBlank
+        {
+            margin: 50px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    
+    <form action=""> 
+        <input type="number" id="n1" value="12">
+        <input type="number" id="n2" value="34">
+        <input type="button" onclick="StringAdda()" value="Add as String">
+        <input type="button" onclick="intAdd()" value="Add as int">
+    </form>
+
+    <form action="">
+
+        <input type="number" id="n3" value="33">
+        <input type="number" id="n4" value="44">
+        <input type="button" onclick="StringAdd2()" value="Add as String2" >
+        <input type="button" onclick="intAdd2()" value="intAdd as int2">
+    </form>
+    <form action="">
+        <input type="number" id="n5" value="55">
+        <input type="number" id="n6" value="66">
+        <input type="button" onclick="StringAdd3()" value="String Add3">
+        <input type="button" onclick="intAdd3()" value="intAdd3 ">
+    </form>
+    <form action="">
+        <input type="number" id="n7" value="77">
+        <input type="number" id="n8" value="88">
+        <input type="button"  onclick="StringAdd4()" value="StringAdd4 as Add String">
+        <input type="button" onclick="intAdd4()" value="intAdd4 as Add int">
+    </form>
+
+
+    <button type="button" onclick="document.write(5+5)">
+    5+5 
+    </button>
+
+    <p id="fb" >inquire fibonacci</p>
+    <button  type="button" onclick="fibonacci()">Fibonacci</button>
+    <p>see console</p>
+    <button  onclick="add(22,33)">add()</button>
+
+    <div class="divBlank"></div>
+    <h2>Demo javaScript</h2>
+    <p id="demo">Parrh  Lorem ipsum dolor sit amet consectetur, adipisictur minima labore cupiditate, soluta similique cuapmque. Ipsam accusantium consequuntur ullam! aing elit. Voluptate illo aperiam excepturi! Consequatur maiores, iure vero aliquid assumenda, quos pariaraphgrapraphhraph</p>
+
+    <button type="button" onclick="mfo()" > mfoMagic</button>
+
+    <div class="divBlank"></div>
+    <form action="">
+    The first number 
+    <input type="text" id="firstNum">
+    
+    <input type="text" id="secondNum">
+    
+    <input type="button" onclick="multiply()" value="Multiply">
+    </form>
+    <p id="result">Multiply result :</p>
+
+     <p> Multiply Task2 </p>   
+    <form action="">
+    <input type="text" id="firstNum1">
+    <input type="text" id="secondNum1">
+    <input type="button" onclick="multiply1()" value="Multiply">
+    </form>
+    <p id="result1">Multiply Result :</p>
+    <p>Multiply Task3</p>
+    <form action="">
+    <input type="text" id="firstNum2">
+    <input type="text" id="secondNum2">
+    <input type="button" onclick="multiply2()" value="Multiply">
+    </form>
+    <p id="demo2">Multiply Result :</p>
+
+
+    <script>
+
+        let fn0="Jony dee";
+        let ln0="LOR";
+        let tet=`welcone ${fn0},${ln0}`; // `
+        console.log(tet);
+        let vo0="Tacker";
+        let bk0="Merlack";
+        let tet2=`welcome ${vo0},${bk0}`;
+        console.log(tet2);
+        let vvo="Crane";
+        let qmo="Tivas";
+        let tet3=`welcome ${vvo},${qmo}`;
+        console.log(tet3);
+
+
+
+
+
+        function multiply2()
+        {
+            let x=document.getElementById('firstNum2').value;
+            let y=document.getElementById('secondNum2').value;
+            let res2=parseInt(x)*parseInt(y);
+            document.getElementById('demo2').innerHTML+= res2.toString();
+        }
+
+
+
+
+        function multiply1()
+        {
+            let x=document.getElementById('firstNum1').value;
+            let y=document.getElementById('secondNum1').value;
+            let res1=parseInt(x)*parseInt(y);
+            document.getElementById('result1').innerHTML += res1.toString();
+
+        }
+
+
+
+
+
+
+        function multiply()
+        {
+            let v1=document.getElementById('firstNum').value;
+            let v2=document.getElementById('secondNum').value;
+
+            let res=parseInt(v1)*parseInt(v2);
+
+            document.getElementById("result").innerHTML += res.toString();
+        }
+
+
+        function mfo()
+        {
+            let x="Hello from JavaScript";
+            console.log(x);
+            document.getElementById('demo').innerHTML=x;
+        }
+
+        function add(x,y)
+        {
+            console.log(x+y);
+        }
+        add(1,1);
+        add(2,2);
+        console.log(100+200);
+
+        function fibonacci()
+        {
+            if(x==0){return 0;}
+            if(x==1){return 1;}
+
+            let r=0;
+            let a=0,b=1;
+            while(x-- >= 2)
+            {
+                r=a+b;
+                a=b;
+                b=r;
+            }
+            return r;
+
+        }
+
+
+
+
+
+
+function StringAdd4()
+{
+    let x=document.getElementById('n7').value;
+    let y=document.getElementById('n8').value;
+    window.alert(x+y);
+}
+function intAdd4()
+{
+    let x=document.getElementById('n7').value;
+    let y=document.getElementById('n8').value;
+    x2=parseInt(x);
+    y2=parseInt(y);
+    window.alert(x2+y2);
+}
+
+
+function StringAdd3()
+{
+    let x=document.getElementById('n5').value;
+    let y=document.getElementById('n6').value;
+    window.alert(x+y);
+}
+function intAdd3()
+{
+    let x=document.getElementById('n5').value;
+    let y=document.getElementById('n6').value;
+    x1=parseInt(x);
+    y1=parseInt(y);
+    window.alert(x1+y1);
+}
+
+
+
+
+
+
+
+
+function StringAdd2()
+{
+    let x=document.getElementById('n3').value;
+    let y=document.getElementById('n4').value;
+    window.alert(x+y);
+}
+function intAdd2()
+{
+    let x=document.getElementById('n3').value;
+    let y=document.getElementById('n4').value;
+    x1=parseInt(x);
+    y1=parseInt(y);
+    window.alert(x1+y1);
+}
+
+
+function StringAdda()
+{
+    let x =document.getElementById("n1").value;
+    let y =document.getElementById("n2").value;
+    window.alert(x+y);
+}
+function intAdd()
+{
+    let x =document.getElementById("n1").value;
+    let y =document.getElementById("n2").value;
+    p =Number.parseInt(x);
+    q =parseInt(y);
+    window.alert(p+q);
+}
+
+</script>
+
+
+</body>
+</html>
