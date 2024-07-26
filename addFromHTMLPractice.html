@@ -4,283 +4,258 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        input,label{
+            display:block;
+        }
+        .divBlank
+        {
+            margin: 50px;
+        }
+
+
+    </style>
+
 </head>
-<body onload="functionLancher()" >
-
-
-<p>Numb : [33,88,99,66,37,25,368,11887,3683,62548,95]</p>
-<h3>Map :</h3>
-<div id="map"> </div>
-<h3>Filter : </h3>
-<div id="filter"></div>
-<h3>Reduce : </h3>
-<div id="reduce"></div>
-
-<br><br><br>
-<p>Numb2 : [55,33,99,88,77,66,55,44,33,22,11,1,2,3,4,5,6,7,8,9,10]</p>
-<h3>Map2 : </h3>
-<div id="map2"></div>
-<h3>Filter2 :</h3>
-<div id="filter2"></div>
-<h3>Reduce :</h3>
-<div id="reduce2"></div>
-
-<br><br><br>
-
-<h3>Using Map.forEach</h3>
-<p id="hi"> </p>
-<h3>Using Map.entries</h3>
-<p id="hi2"></p>
-<h3>object properties</h3>
-<p id="hi3"></p>
-
-<br><br><br>
-<h2>Object class Demo</h2>
-<p>Object</p>
-<p id="object"></p>
-<p>Class</p>
-<p id="class"></p>
-
-<script>
-
-function functionLancher()
-{
-demoSet();
-sayHi();
-}
-
-
-
-
-function demoSet()
-{
-s=new Set([12,13,34,45]);
-v=s.values();
-for(let p of v)
-{
-    console.log(p);
-}
-}
-
-
-
-
-let alfin={
-"100":"Jloas",
-"101":"Grosks",
-"102":"Forker"
-}
-for(let k in alfin )
-{
-console.log(k);
-console.log(alfin[k]);
-}
-console.log(getName('100'));
-function getName(motaid){
-    return alfin[motaid];
-}
-
-
-const person={
-name:'Alita',
-age:35,
-sayHello(){
-s=`hello,my name is ${this.name} and I am ${this.age}years old.`;
-document.getElementById("object").innerHTML=s;
-}
-};
-class People{
-constructor(name,age){
-  this.name=name;
-  this.age=age;
-}
-sayHello(){
-s=`Hello,my name is ${this.name} and I am ${this.age} years old.`;
-document.getElementById("class").innerHTML=s;
-}
-}
-person.sayHello();
-nick=new People('nick',30);
-nick.sayHello();
-albert=new People('Albert',35);
-albert.sayHello();
-
-
-
-
-
-
-
-
-
-
-console.log("Demo the keys of an object");
-const students=[
-
-{name:"Mobi",tall:178},
-{name:"Larpo",tall:168},
-{name:"Korlas",tall:176}
-];
-for (let st of students)
-{
-for(let attr in st)
-{
-    console.log(attr,":", st[attr]);
-}
-}
-console.log("Demo the keys of an object2");
-const students001=[
-{name:"Lanrkas",tall:158},
-{name:"Vamleimir",tall:166},
-{name:"kordas",tall:167}
-];
-for(let st1 of students001)
-{
-    for(let attr1 in st1)
-    {
-        console.log(attr1,":",st1[attr1]);
-    }
-}
-console.log("Demo the keys of an object3");
-const students002=[
-{name:"Marov",tall:198},
-{name:"Werolok",tall:169},
-{name:"Hocrook",tall:188}
-];
-for(let st2 of students002)
-{
-for(let attr2 in st2)
-{
-  console.log(attr2,":",st2[attr2]);
-}
-}
-
-const student={
-101:"jhon",
-102:"jane",
-103:"joim",
-}
-const teacher =new Map()
-teacher.set("t1001","Taojhon");
-teacher.set("t1002","Melpone");
-teacher.set("t1003","Bilorjori");
-
-function sayHi()
-{
-msg="";
-teacher.forEach(function (x)
-{
-    msg += `${x}-`;
-});
-
-document.getElementById("hi").innerHTML = msg;
-msg=" ";
-
-for([key,value] of teacher.entries())
-{
-    msg += `teacher ${key} is ${value} <br>`;
-}
-document.getElementById("hi2").innerHTML = msg;
-
-msg=" ";
-for(p in student)
-{
-    msg +=`student ${p} is ${student[p]} <br>`;
-}
-document.getElementById("hi3").innerHTML = msg;
-}
-
-
-
-let numbers=[33,88,99,66,37,25,368,11887,3683,62548,95];
-document.getElementById('map').innerHTML=numbers.map(multiplynum);
-document.getElementById('filter').innerHTML=numbers.filter(filter50);
-document.getElementById('reduce').innerHTML=numbers.reduce(sum02);
-function multiplynum(value,index,array)
-{
-    return value*value;
-}
-function filter50(value,index,array)
-{
-    return value >= 50 && value <=100  ;
-}
-function sum02(total,value,index,array)
-{
-    return total + value;
-}
-
-
-
-
-let numbers2=[55,33,99,88,77,66,55,44,33,22,11,1,2,3,4,5,6,7,8,9,10];
-
-let sortedNumbers = numbers2.sort((a, b) => a - b); // Sort in ascending order
-document.getElementById('reduce2').innerHTML = sortedNumbers.join(", ");
-
-document.getElementById('map2').innerHTML=numbers2.map(multiplyNum2);
-document.getElementById('filter2').innerHTML=numbers2.filter(filter22);
-
-function multiplyNum2(value,index,array)
-{
-    return value*5*value*value/5000;
-}
-function filter22(value,index,array)
-{
-    return value <= 22 ;
-}
-
-
-
-
-
-
-
-    let grade=[20,33,88,66,99,44,256,88,3,1,2,3];
-    let sum=0;
-
-    grade.forEach(sumGrade);
-    let avg = (sum / grade.length).toFixed(2);
-    console.log("The average grade of "+grade.toString()+"   is :  "+avg);
-    function sumGrade(g)
-    {
-        sum += g;
-    }
-
-    let grade0=[1,22,55,88,99,111,553,58,36,81,98,398,3669];
-    let sum001=0;
-
-    grade0.forEach(sumGrade001);
-    let avg00=(sum001/grade0.length).toFixed(3);
-
-    console.log("The average grade of "+grade0.toString()+"  is  "+avg00);
-    function sumGrade001(gradee)
-    {
-        sum001 += gradee;
-    }
-
+<body>
     
-    let a=[13,22,55,88,77,2,3,66,49,38,58,24,69];
-    let sum0=0;
-    let passList=a.filter(pass);
-    alert(passList);
-    function pass(g)
-    {
-        return g>=60;
-    }
+    <form action=""> 
+        <input type="number" id="n1" value="12">
+        <input type="number" id="n2" value="34">
+        <input type="button" onclick="StringAdda()" value="Add as String">
+        <input type="button" onclick="intAdd()" value="Add as int">
+    </form>
 
-    let b=[22,55,73,99,66,32,63,64,62,158,3665,885,223,665,8,0,1,2,3,58,9,36,3,44,83,5]
-    let sum01=0;
-    let passList01=b.filter(pass01);
-    alert(passList01);
-    function pass01(g01)
-    {
-        return g01>=60 && g01<=100 ;
-    }
+    <form action="">
+
+        <input type="number" id="n3" value="33">
+        <input type="number" id="n4" value="44">
+        <input type="button" onclick="StringAdd2()" value="Add as String2" >
+        <input type="button" onclick="intAdd2()" value="intAdd as int2">
+    </form>
+    <form action="">
+        <input type="number" id="n5" value="55">
+        <input type="number" id="n6" value="66">
+        <input type="button" onclick="StringAdd3()" value="String Add3">
+        <input type="button" onclick="intAdd3()" value="intAdd3 ">
+    </form>
+    <form action="">
+        <input type="number" id="n7" value="77">
+        <input type="number" id="n8" value="88">
+        <input type="button"  onclick="StringAdd4()" value="StringAdd4 as Add String">
+        <input type="button" onclick="intAdd4()" value="intAdd4 as Add int">
+    </form>
+
+
+    <button type="button" onclick="document.write(5+5)">
+    5+5 
+    </button>
+
+    <p id="fb" >inquire fibonacci</p>
+    <button  type="button" onclick="fibonacci()">Fibonacci</button>
+    <p>see console</p>
+    <button  onclick="add(22,33)">add()</button>
+
+    <div class="divBlank"></div>
+    <h2>Demo javaScript</h2>
+    <p id="demo">Parrh  Lorem ipsum dolor sit amet consectetur, adipisictur minima labore cupiditate, soluta similique cuapmque. Ipsam accusantium consequuntur ullam! aing elit. Voluptate illo aperiam excepturi! Consequatur maiores, iure vero aliquid assumenda, quos pariaraphgrapraphhraph</p>
+
+    <button type="button" onclick="mfo()" > mfoMagic</button>
+
+    <div class="divBlank"></div>
+    <form action="">
+    The first number 
+    <input type="text" id="firstNum">
+    
+    <input type="text" id="secondNum">
+    
+    <input type="button" onclick="multiply()" value="Multiply">
+    </form>
+    <p id="result">Multiply result :</p>
+
+     <p> Multiply Task2 </p>   
+    <form action="">
+    <input type="text" id="firstNum1">
+    <input type="text" id="secondNum1">
+    <input type="button" onclick="multiply1()" value="Multiply">
+    </form>
+    <p id="result1">Multiply Result :</p>
+    <p>Multiply Task3</p>
+    <form action="">
+    <input type="text" id="firstNum2">
+    <input type="text" id="secondNum2">
+    <input type="button" onclick="multiply2()" value="Multiply">
+    </form>
+    <p id="demo2">Multiply Result :</p>
+
+
+    <script>
+
+        let fn0="Jony dee";
+        let ln0="LOR";
+        let tet=`Welcone ${fn0},${ln0}`; // `
+        console.log(tet);
+        let vo0="Tacker";
+        let bk0="Merlack";
+        let tet2=`Welcome ${vo0},${bk0}`;
+        console.log(tet2);
+        let vvo="Crane";
+        let qmo="Tivas";
+        let tet3=`Welcome ${vvo},${qmo}`;
+        console.log(tet3);
+        let wrq="Winser";
+        let lqo="Qolda";
+        let tet4=`Welcome ${wrq},${lqo}`;
+        console.log(tet4);
 
 
 
+
+        function multiply2()
+        {
+            let x=document.getElementById('firstNum2').value;
+            let y=document.getElementById('secondNum2').value;
+            let res2=parseInt(x)*parseInt(y);
+            document.getElementById('demo2').innerHTML+= res2.toString();
+        }
+
+
+
+
+        function multiply1()
+        {
+            let x=document.getElementById('firstNum1').value;
+            let y=document.getElementById('secondNum1').value;
+            let res1=parseInt(x)*parseInt(y);
+            document.getElementById('result1').innerHTML += res1.toString();
+
+        }
+
+
+
+
+
+
+        function multiply()
+        {
+            let v1=document.getElementById('firstNum').value;
+            let v2=document.getElementById('secondNum').value;
+
+            let res=parseInt(v1)*parseInt(v2);
+
+            document.getElementById("result").innerHTML += res.toString();
+        }
+
+
+        function mfo()
+        {
+            let x="Hello from JavaScript";
+            console.log(x);
+            document.getElementById('demo').innerHTML=x;
+        }
+
+        function add(x,y)
+        {
+            console.log(x+y);
+        }
+        add(1,1);
+        add(2,2);
+        console.log(100+200);
+
+        function fibonacci()
+        {
+            if(x==0){return 0;}
+            if(x==1){return 1;}
+
+            let r=0;
+            let a=0,b=1;
+            while(x-- >= 2)
+            {
+                r=a+b;
+                a=b;
+                b=r;
+            }
+            return r;
+
+        }
+
+
+
+
+
+
+function StringAdd4()
+{
+    let x=document.getElementById('n7').value;
+    let y=document.getElementById('n8').value;
+    window.alert(x+y);
+}
+function intAdd4()
+{
+    let x=document.getElementById('n7').value;
+    let y=document.getElementById('n8').value;
+    x2=parseInt(x);
+    y2=parseInt(y);
+    window.alert(x2+y2);
+}
+
+
+function StringAdd3()
+{
+    let x=document.getElementById('n5').value;
+    let y=document.getElementById('n6').value;
+    window.alert(x+y);
+}
+function intAdd3()
+{
+    let x=document.getElementById('n5').value;
+    let y=document.getElementById('n6').value;
+    x1=parseInt(x);
+    y1=parseInt(y);
+    window.alert(x1+y1);
+}
+
+
+
+
+
+
+
+
+function StringAdd2()
+{
+    let x=document.getElementById('n3').value;
+    let y=document.getElementById('n4').value;
+    window.alert(x+y);
+}
+function intAdd2()
+{
+    let x=document.getElementById('n3').value;
+    let y=document.getElementById('n4').value;
+    x1=parseInt(x);
+    y1=parseInt(y);
+    window.alert(x1+y1);
+}
+
+
+function StringAdda()
+{
+    let x =document.getElementById("n1").value;
+    let y =document.getElementById("n2").value;
+    window.alert(x+y);
+}
+function intAdd()
+{
+    let x =document.getElementById("n1").value;
+    let y =document.getElementById("n2").value;
+    p =Number.parseInt(x);
+    q =parseInt(y);
+    window.alert(p+q);
+}
 
 </script>
+
 
 </body>
 </html>
