@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body onload="sayHi()" >
+<body onload="functionLancher()" >
 
 
 <p>Numb : [33,88,99,66,37,25,368,11887,3683,62548,95]</p>
@@ -27,9 +27,6 @@
 
 <br><br><br>
 
-<br><br><br>
-
-
 <h3>Using Map.forEach</h3>
 <p id="hi"> </p>
 <h3>Using Map.entries</h3>
@@ -37,8 +34,85 @@
 <h3>object properties</h3>
 <p id="hi3"></p>
 
+<br><br><br>
+<h2>Object class Demo</h2>
+<p>Object</p>
+<p id="object"></p>
+<p>Class</p>
+<p id="class"></p>
 
 <script>
+
+function functionLancher()
+{
+demoSet();
+sayHi();
+}
+
+
+
+
+function demoSet()
+{
+s=new Set([12,13,34,45]);
+v=s.values();
+for(let p of v)
+{
+    console.log(p);
+}
+}
+
+
+
+
+let alfin={
+"100":"Jloas",
+"101":"Grosks",
+"102":"Forker"
+}
+for(let k in alfin )
+{
+console.log(k);
+console.log(alfin[k]);
+}
+console.log(getName('100'));
+function getName(motaid){
+    return alfin[motaid];
+}
+
+
+const person={
+name:'Alita',
+age:35,
+sayHello(){
+s=`hello,my name is ${this.name} and I am ${this.age}years old.`;
+document.getElementById("object").innerHTML=s;
+}
+};
+class People{
+constructor(name,age){
+  this.name=name;
+  this.age=age;
+}
+sayHello(){
+s=`Hello,my name is ${this.name} and I am ${this.age} years old.`;
+document.getElementById("class").innerHTML=s;
+}
+}
+person.sayHello();
+nick=new People('nick',30);
+nick.sayHello();
+albert=new People('Albert',35);
+albert.sayHello();
+
+
+
+
+
+
+
+
+
 
 console.log("Demo the keys of an object");
 const students=[
