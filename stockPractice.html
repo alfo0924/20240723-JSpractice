@@ -21,14 +21,106 @@ for(trade of tradeList)
 let price=trade.split(' ')[0].slice(1);
 price =parseInt(price);
 let quantity=parseInt(trade.split(' ')[1]);
-console.log(`買了 ${quantity}}股,價格 ${price}`)
+console.log(`買了 ${quantity}股,價格 ${price}`)
+}
+
+buy_tsmc="$200 2000 #$250 2000 #$300 2000";
+tradeList2=buy_tsmc.split(' # ');
+for(trade of tradeList2)
+{
+let price=trade.split(' ')[0].slice(1);
+price=parseInt(price);
+let quantity2=parseInt(trade.split(' ')[1]);
+console.log(`買了 ${quantity2}股,價格 ${price}`)
+
 }
 
 //stock01b.js
+buy_tsmc="$200 200 # $250 2000 # $300 2000 ";
+priceSet=[];
+quantitySet=[];
+tradeList=buy_tsmc.split(' # ');
+for(trade of tradeList)
+{
+let price =trade.split(' ')[0].slice(1);
+price =parseInt(price);
+let quantity=parseInt(trade.split(' ')[1]);
+priceSet.push(price);
+quantitySet.push(quantity);
+console.log(`買了 ${quantity} 股 , 價格 ${price}`);
+}
 
+buy_tsmc="$200 2000  #$250 2000 #$300 2000 "
+priceSet=[];
+priceSet=[];
+quantitySet=[];
+tradeList=buy_tsmc.split(' # ');
+for(trade of tradeList)
+{
+let price=trade.split(' ')[0].slice(1);
+price =parseInt(price);
+let quantity=parseInt(trade.split(' ')[1]);
+priceSet.push(price);
+quantitySet.push(quantity);
+console.log(`買了 ${quantity} 股 , 價格 ${price}`);
+}
+//stock01c.js
+function showProfit(str_trade, current_price) {
+    // 將交易記錄字串以 " # " 分隔成陣列
+    let tradeList = str_trade.split(" # ");
+    let cost = 0; // 初始化成本為 0
+    let totQuantity = 0; // 初始化總股數為 0
+    // 遍歷每一筆交易記錄
+    for (trade of tradeList) {
+        // 取得每筆交易的價格，並去掉開頭的 "$" 符號
+        let price = trade.split(' ')[0].slice(1);
+        price = parseInt(price); // 將價格轉換為整數
+        // 取得每筆交易的股數
+        let quantity = parseInt(trade.split(' ')[1]); // 將股數轉換為整數
+        // 計算總成本
+        cost += (quantity * price);
+        console.log(`買了${price} 股 , 價格 ${quantity} `); // 輸出每筆交易的股數和價格
+    }
+    // 計算當前市值
+    let currentValue = totQuantity * current_price; 
+    // 計算獲利金額
+    let profit = currentValue - cost; 
+    // 計算獲利率
+    let profitRate = (profit / cost - 1) * 100; 
+    // 輸出成本、當前股價、獲利金額和獲利率
+    console.log(`\n成本 : ${cost.toLocaleString()}`); // 格式化成本
+    console.log(`現價 : ${current_price}`); // 輸出當前股價
+    console.log(`獲利 : ${profit.toLocaleString()}`); // 格式化獲利金額
+    console.log(`獲利率 : ${profitRate.toFixed(2)}%`); // 格式化獲利率，保留兩位小數
+}
+buy_tsmc="$200 2000 # $250 2000 # $300 2000";
+current_price=1035;
+showProfit(buy_tsmc,current_price);
 
-
-
+function showProfit2(str_trade,current_price)
+{
+let tradeList=str_trade.split(' # ');
+let cost =0, totQuantity = 0;
+for(trade of tradeList)
+{
+let price = trade.split(' ')[0].slice(1);
+price=parseInt(price);
+let quantity=parseInt(trade.split(' ')[1]);
+cost +=(quantity * price);
+totQuantity += quantity;
+console.log(`買了 ${quantity}股 ,價格 ${price}`)
+}
+let currentValue = totQuantity * current_price;
+let profit = currentValue - cost;
+let profitRate = (profit / cost - 1) * 100;
+console.log(`\n 成本 : ${cost.toLocaleString()}`);
+console.log(`現價 :${current_price}`);
+console.log(`獲利 :${profit.toLocaleString()}`);
+console.log(`獲利率 :${profitRate.toFixed(2)}%`);
+}
+buy_tsmc = "$200 2000 #$250 2000 #$300 3000 ";
+current_price = 1035;
+showProfit2(buy_tsmc , current_price);
 </script>
 
 
