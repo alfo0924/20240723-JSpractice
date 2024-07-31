@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  </title>
+</head>
+<body>
+    
+
+
+
+<script>
+//stock01a.js
+buy_tsmc="$200 2000 # $250 2000 # $300 2000";
+tradeList=buy_tsmc.split(' # ');
+
+for(trade of tradeList)
+{
+let price=trade.split(' ')[0].slice(1);
+price =parseInt(price);
+let quantity=parseInt(trade.split(' ')[1]);
+console.log(`買了 ${quantity}}股,價格 ${price}`)
+}
+
+//stock01b.js
+
+
+
+
+</script>
+
+
+</body>
+</html>
