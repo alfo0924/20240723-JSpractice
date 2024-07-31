@@ -11,7 +11,7 @@
 
 
 
-<script>
+<script >
 //stock01a.js
 buy_tsmc="$200 2000 # $250 2000 # $300 2000";
 tradeList=buy_tsmc.split(' # ');
@@ -121,8 +121,230 @@ console.log(`獲利率 :${profitRate.toFixed(2)}%`);
 buy_tsmc = "$200 2000 #$250 2000 #$300 3000 ";
 current_price = 1035;
 showProfit2(buy_tsmc , current_price);
-</script>
+//stock01d.js
 
+function showProfit(str_trade , current_price)
+{
+//remove $
+str_trade=str_trade.split('$').join('');
+const tradeList=str_trade.split('#');
+let cost=0;
+let totQuantity=0;
+tradeList.forEach(trade =>{
+const[price,quantity]=trade.split(' ').map(s => parseInt(s));
+cost +=(quantity * price);
+totQuantity += quantity;
+console.log(`買了 ${quantity}股 , 價格 ${price}`)
+});
+let currentValue =totQuantity * current_price;
+let profit = currentValue - cost;
+let profitRate =(profit / cost -1) *100 ;
+console.log(`\n 成本 : ${cost.toLocaleString()}`);
+console.log(`現價 : ${current_price}`);
+console.log(`獲利 : ${profit.toLocaleString()}`);
+console.log(`獲利率 : ${profitRate.toFixed(2)}% `);
+}
+const buy_tsmc33="$200 2000 #$250 2000 #$300 2000";
+const currentPrice=1000;
+showProfit(buy_tsmc33,currentPrice);
+
+function showProfit(str_trade,current_price)
+{
+//remove $
+str_trade = str_trade.split('$').join('');
+const tradeList=str_trade.split(' # ');
+let cost = 0;
+let totQuantity =0;
+
+tradeList.forEach(
+trade =>{
+const[price,quantity]=trade.split(' ').map(s=>parseInt(s));
+cost += (quantity * price);
+totQuantity += quantity;
+console.log(`買了 ${quantity} 股 , 價格 ${price}`)
+});
+let currentValue =totQuantity * current_price;
+let profit =currentValue - cost;
+let profitRate =(profit / cost -1)*100;
+console.log(`\n 成本 : ${cost.toLocaleString()}`);
+console.log(`現價 :${current_price}`);
+console.log(`獲利 :${profit.toLocaleString()}`);
+console.log(`獲利率 :${profitRate.toFixed(2)}`);
+}
+const buy_tsmc44="$200 200 #$250 2000 #$300 20000";
+const currentPrice2 = 2000;
+showProfit(buy_tsmc44,currentPrice2);
+
+
+//stock01e.js
+
+//stock02a.js
+let b1,b2,b3,transaction;
+
+function setData(){
+b1={
+'name':'台積電',
+'date':'1999/4/20',
+'price':200,
+'quantity':1000,
+'type':'買'
+}
+b2={
+'name':'鴻海',
+'date':'2001/09/10',
+'price':90,
+'quantity':2000,
+'type':'買',
+}
+b3={
+'name':'台灣大',
+'date':'2003/06/19',
+'price':80,
+'quantity':4000,
+'type':'買',
+}
+transaction =[b1,b2,b3];
+}
+setData();
+console.log(transaction);
+console.log("== 用 for ... == ");
+for(t of transaction)
+{
+console.log(`${t.date}日 ${t.price}元 ${t.type} ${t.name} 股票 ${t.quantity} 股`);
+}
+
+console.log("== 用 forEach ==");
+transaction.forEach(t=>{
+console.log(`${t.date}日 ${t.price}元 ${t.type} ${t.name}${t.quantity}股`);
+});
+
+console.log(transaction,setData);
+
+//stock02b.js
+const{setData1,transaction1 }= require("./stock02a");
+setData1();
+function computeCost01()
+{
+    console.log("== 用 ...for...  ==");
+    let tot_cost=0;
+    for(t of transaction1)
+    {
+        console.log(`${t.date}日 以${t.price}元 ${t.type} ${t.name}股票 ${t.quantity}股`);
+        tot_cost+=t.price*t.quantity;
+    }
+    return (tot_cost);
+}
+function computeCost02()
+{
+console.log("\n == 用 reduce ==");
+tot_cost=transaction1.reduce((acc,t)=>
+{
+console.log(`${t.date}日 以${t.price} 元 ${t.type} ${t.name}股票 ${t.quantity} 股`);
+return acc + t.price *t.quantity;
+},0
+);
+return (tot_cost);
+}
+console.log('總成本為 : ${computeCost01().toLocaleString()}');
+console.log('總成本為 : ${computeCost02().toLocaleString()}');
+
+//stock02e.js
+const Stock=require('./stock02d');
+function parseObj(transction_str){
+const t_list = transaction_str.split(" ");
+t_object ={};
+t_object.date=t_list[0];
+t_object.price=parseInt(t_list[1].slide(1));
+t_object.type=t_list[2];
+t_object.name=t_list[3];
+t_object.quantity=parseInt(t_list[4].slice(0,-1));
+return t_object;
+}
+stocks ={};
+
+function genStockInfo(transList)
+{
+for(trans of transList)
+{
+if(s_name = trans.name)
+{
+if(s_name in stocks)
+{
+stock=stocks[s_name];
+stock.history.push(trans);
+if(trans.type == "買")
+{
+    stock.share += trans.quantity;
+    stock.asset_stack.push({"price":trans.price, "share": trans.quantity});
+}
+else{
+let q =trans.quantity;
+if(stock.share >= q)
+{
+stock.share -=q;
+for(const asset of stock.asset_stack)
+{
+left = asset.sahre-q;
+if(left >0)
+{
+asset.share -=q;
+break;
+}else{
+//prepare to move to next 
+q = q-asset.share;
+asset.share=0;
+}
+
+
+}
+//
+stock.asset_stack = stock.asset_stack.stock.filter(x => x.share >0);
+
+}else{
+console.log('存貨不夠多,想賣太多');
+}
+}
+}else{
+
+    stocks[s_name]= new Stocks(s_name,trans);
+}
+
+
+}
+
+
+}
+s=[
+"1999/4/20 $200 買 台積電 1000 股 ",
+"2001/09/10 $90 買 鴻海 2000 股",
+"2003/06/19 $80 買 台灣大 4000 股",
+"2003/06/18 $300 買 台積電 2000 股",
+"2003/06/20 $300 買 台積電 200股",
+"2010/06/21 $600 買 台積電 200股",
+"2010/06/22 $800 買 台積電 200股",
+"2011/07/19 $100 賣 台灣大 4000股",
+"2011/07/19 $101 買 台灣大 1000股",
+]
+
+}
+transactionList =[];
+s.forEach(element =>{
+translationList.push(parseObj(element));
+
+});
+//console.log(trades);
+genStockInfo(translationList);
+//console.log(stocks);
+for(s in stocks)
+{
+console.log("====",s);
+console.log(stocks[s].toString());
+}
+console.log(stocks.genStockInfo);
+
+
+
+</script>
 
 </body>
 </html>
